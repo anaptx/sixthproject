@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceurl:
+      defaultZone: http://localhost:8771/eureka/
+server:
+  port: 8779
+spring:
+  application:
+    name: service-zuul
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      serviceId: service-feign
+#解决请求超时，设置ribbon的超时时间
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
